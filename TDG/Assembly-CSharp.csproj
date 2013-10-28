@@ -44,10 +44,16 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\MoveCamera.cs" />
-     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
-     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
-     <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
+     <Compile Include="assets\scripts\ManagerScripts\MenuGUI.cs" />
+     <Compile Include="assets\scripts\ManagerScripts\NetworkManager.cs" />
+     <Compile Include="assets\scripts\ManagerScripts\SceneManager.cs" />
+     <Compile Include="assets\scripts\PlayerScripts\CameraController.cs" />
+     <Compile Include="assets\scripts\PlayerScripts\DrawGrid.cs" />
+     <Compile Include="assets\scripts\PlayerScripts\DrawRoad.cs" />
+     <Compile Include="assets\scripts\PlayerScripts\PlaceCastle.cs" />
+     <Compile Include="assets\scripts\PlayerScripts\PlaceRoad.cs" />
+     <None Include="assets\standard assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="assets\standard assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

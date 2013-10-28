@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="assets\scripts\PlayerScripts\PlaceCastle.cs">
+    <Files>
+      <File FileName="assets\scripts\PlayerScripts\PlaceCastle.cs" Line="63" Column="1" />
+      <File FileName="assets\scripts\ManagerScripts\NetworkManager.cs" Line="30" Column="3" />
+      <File FileName="assets\scripts\ManagerScripts\SceneManager.cs" Line="25" Column="10" />
+      <File FileName="assets\scripts\ManagerScripts\MenuGUI.cs" Line="68" Column="14" />
+      <File FileName="assets\scripts\PlayerScripts\CameraController.cs" Line="21" Column="6" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
