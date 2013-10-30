@@ -37,7 +37,7 @@ public class SceneManager : MonoBehaviour
                 break;
             default:
                 currScene = Scenes.MainMenu;
-                Application.LoadLevel("MainMenu");
+                Application.LoadLevel("Main");
                 break;
         }
 

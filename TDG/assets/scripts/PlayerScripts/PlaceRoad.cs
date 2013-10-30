@@ -10,7 +10,8 @@ public class PlaceRoad : MonoBehaviour {
     private Camera camera;
     private DrawRoad drawRoad;
     private float terrainWidth;
-    private float terrain;
+    private float terrainLength;
+    private PlayerManager player;
 
 	// Use this for initialization
 	void Start () 
@@ -18,6 +19,9 @@ public class PlaceRoad : MonoBehaviour {
         isPlacing = false;
         isInitialized = false;
         camera = Camera.main;
+        terrainWidth = Terrain.activeTerrain.terrainData.size.x;
+        terrainLength = Terrain.activeTerrain.terrainData.size.z;
+        player = GetComponent<PlayerManager>();
 	}
 	
 	// Update is called once per frame
@@ -29,7 +33,6 @@ public class PlaceRoad : MonoBehaviour {
 
     Vector3 GetMousePosition()
     {
-
         Vector3 mousePosition = Input.mousePosition;
         Vector3 cameraPosition = Camera.main.transform.position;
         //this controls the altitude of the object, and setting it equal to the camera's height (y axis) puts it on the terrain
@@ -38,19 +41,28 @@ public class PlaceRoad : MonoBehaviour {
         return camera.ScreenToWorldPoint(mousePosition);
     }
 
+    //makes sure that a location is on the map
+    bool InBounds(Vector3 position)
+    {
+        if (position.x >= 0 && position.x <= terrainWidth && position.z >= 0 && position.z <= terrainLength)
+            return true;
+        return false;
+    }
+
     void Place()
     {
+        Vector3 mousePosition = GetMousePosition();
         //If the beginning position for the road hasn't been selected, place it where the player clicks
-        if (!isInitialized && Input.GetMouseButtonDown(0))
+        if (!isInitialized)
         {
-            drawRoad.SetOrigin(GetMousePosition());
+            drawRoad.SetOrigin(player.castlePosition);
             isInitialized = true;
         }
-        else if(isInitialized && Input.GetMouseButtonDown(0))
+        else if(isInitialized && Input.GetMouseButtonDown(0) && InBounds(mousePosition))
         {
             drawRoad.AddVertex(GetMousePosition());
         }
-        else if (isInitialized)
+        else if (isInitialized && InBounds(mousePosition))
         {
             drawRoad.TemporarilyAddVertex(GetMousePosition());
         }
@@ -67,17 +79,20 @@ public class PlaceRoad : MonoBehaviour {
 
     void PromptForRoadPlacement()
     {
-        if (GUI.Button(new Rect(0, 110, 100, 100), "Place Road"))
+        if (GUI.Button(new Rect(0, 30, 100, 20), "Place Road"))
         {
-            isPlacing = true;
-            newRoad = Network.Instantiate(road, new Vector3(0, 0, 0), Quaternion.identity, 0) as GameObject;
-            drawRoad = newRoad.GetComponent<DrawRoad>();
+            if (player.hasPlacedCastle)
+            {
+                isPlacing = true;
+                newRoad = Network.Instantiate(road, new Vector3(0,0,0), Quaternion.identity, 0) as GameObject;
+                drawRoad = newRoad.GetComponent<DrawRoad>();
+            }
         }
     }
 
     void PromptForRoadPlacementEnd()
     {
-        if (GUI.Button(new Rect(0, 110, 100, 100), "Stop Placing Road"))
+        if (GUI.Button(new Rect(0, 30, 100, 20), "Stop Placing Road"))
         {
             isPlacing = false;
             isInitialized = false;

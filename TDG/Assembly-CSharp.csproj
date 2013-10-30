@@ -47,11 +47,13 @@
      <Compile Include="assets\scripts\ManagerScripts\MenuGUI.cs" />
      <Compile Include="assets\scripts\ManagerScripts\NetworkManager.cs" />
      <Compile Include="assets\scripts\ManagerScripts\SceneManager.cs" />
+     <Compile Include="assets\scripts\ManagerScripts\SpawnManager.cs" />
      <Compile Include="assets\scripts\PlayerScripts\CameraController.cs" />
      <Compile Include="assets\scripts\PlayerScripts\DrawGrid.cs" />
      <Compile Include="assets\scripts\PlayerScripts\DrawRoad.cs" />
      <Compile Include="assets\scripts\PlayerScripts\PlaceCastle.cs" />
      <Compile Include="assets\scripts\PlayerScripts\PlaceRoad.cs" />
+     <Compile Include="assets\scripts\PlayerScripts\PlayerManager.cs" />
      <None Include="assets\standard assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="assets\standard assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>

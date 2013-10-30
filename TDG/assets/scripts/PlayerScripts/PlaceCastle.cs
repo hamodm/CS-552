@@ -8,11 +8,14 @@ public class PlaceCastle : MonoBehaviour {
     int castleCount;
 	bool isPlacing;
 
+    private PlayerManager player;
+
     // Use this for initialization
     void Start()
     {
 		castleCount = 0;
 		isPlacing = false;
+        player = GetComponent<PlayerManager>();
     }
 
     // Update is called once per frame
@@ -41,6 +44,8 @@ public class PlaceCastle : MonoBehaviour {
 		{
 			castleCount++;
 			isPlacing = false;
+            player.hasPlacedCastle = true;
+            player.castlePosition = newCastle.transform.position;
 		}
 		else if (castleCount == 0)
         {
@@ -57,10 +62,11 @@ public class PlaceCastle : MonoBehaviour {
 	
 	void PromptForCastlePlacement()
 	{
-		if (GUI.Button(new Rect(0, 0, 100, 100), "Place Castle"))
+		if (GUI.Button(new Rect(0, 0, 100, 20), "Place Castle"))
 		{
 			isPlacing = true;
 			newCastle = Network.Instantiate(castle, new Vector3(0,0,0), Quaternion.identity, 0) as GameObject;
+            newCastle.transform.parent = gameObject.transform;
 		}
 	}
 }

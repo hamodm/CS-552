@@ -59,8 +59,6 @@ public class MenuGUI : MonoBehaviour
 
         if (GUI.Button(new Rect(0, currY, stdW, stdH), "Connect to Server"))
         {
-            return;
-            /*
             ConnectionInfo info = new ConnectionInfo();
             info.ipAddress = ipAddress;
             int iPortNum = 0;
@@ -70,14 +68,13 @@ public class MenuGUI : MonoBehaviour
             }
 
             SendMessage("ConnectToServer", info);
-            */
         }
     }
     void GameMenu()
     {
         if (GUI.Button(new Rect(0, 0, Screen.width, Screen.height), "Start"))
         {
-            //SendMessage("SpawnPlayer", true);
+            SendMessage("SpawnPlayer", true);
             //GameObject.Find("TempCamera").SetActive(false);
             enabled = false;
             return;

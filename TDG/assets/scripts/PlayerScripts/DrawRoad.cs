@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class DrawRoad : MonoBehaviour 
 {
     private LineRenderer line;
+    //might not keep this, trying to make sure the line won't disappear
+    private LineRenderer secondLine;
     private int counter;
     private List<Vector3> vertices;
 
@@ -12,7 +14,9 @@ public class DrawRoad : MonoBehaviour
 	void Start () 
     {
         line = GetComponent<LineRenderer>();
-        line.SetWidth(0.5f, 0.5f);
+        secondLine = GetComponent<LineRenderer>();
+        line.SetWidth(1f, 2f);
+        secondLine.SetWidth(1f, 2f);
 	}
 	
 	// Update is called once per frame
@@ -33,23 +37,31 @@ public class DrawRoad : MonoBehaviour
 
     public void SetOrigin(Vector3 origin)
     {
+        origin.y = 0.1f;
         vertices = new List<Vector3>();
         line.SetPosition(0, origin);
+        secondLine.SetPosition(0, origin);
         vertices.Add(origin);
         counter = 1;
     }
 
     public void AddVertex(Vector3 destination)
     {
+        destination.y = 0.1f;
         line.SetVertexCount(counter + 1);
         line.SetPosition(counter, destination);
+        secondLine.SetVertexCount(counter + 1);
+        secondLine.SetPosition(counter, destination);
         counter++;
     }
 
     public void TemporarilyAddVertex(Vector3 destination)
     {
-        print("TemporarilyAddVertex(" + destination.x + ", " + destination.y + ", " + destination.z + ")");
+        destination.y = 0.1f;
         line.SetVertexCount(counter + 1);
         line.SetPosition(counter, destination);
+
+        secondLine.SetVertexCount(counter + 1);
+        secondLine.SetPosition(counter, destination);
     }
 }
