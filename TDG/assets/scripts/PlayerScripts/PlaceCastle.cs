@@ -8,14 +8,14 @@ public class PlaceCastle : MonoBehaviour {
     int castleCount;
 	bool isPlacing;
 
-    private PlayerManager player;
+    private PlayerManager playerManager;
 
     // Use this for initialization
     void Start()
     {
 		castleCount = 0;
 		isPlacing = false;
-        player = GetComponent<PlayerManager>();
+        playerManager = GetComponent<PlayerManager>();
     }
 
     // Update is called once per frame
@@ -44,8 +44,8 @@ public class PlaceCastle : MonoBehaviour {
 		{
 			castleCount++;
 			isPlacing = false;
-            player.hasPlacedCastle = true;
-            player.castlePosition = newCastle.transform.position;
+            playerManager.hasPlacedCastle = true;
+            playerManager.castlePosition = newCastle.transform.position;
 		}
 		else if (castleCount == 0)
         {

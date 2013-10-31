@@ -44,18 +44,19 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="assets\scripts\ManagerScripts\MenuGUI.cs" />
-     <Compile Include="assets\scripts\ManagerScripts\NetworkManager.cs" />
-     <Compile Include="assets\scripts\ManagerScripts\SceneManager.cs" />
-     <Compile Include="assets\scripts\ManagerScripts\SpawnManager.cs" />
-     <Compile Include="assets\scripts\PlayerScripts\CameraController.cs" />
-     <Compile Include="assets\scripts\PlayerScripts\DrawGrid.cs" />
-     <Compile Include="assets\scripts\PlayerScripts\DrawRoad.cs" />
-     <Compile Include="assets\scripts\PlayerScripts\PlaceCastle.cs" />
-     <Compile Include="assets\scripts\PlayerScripts\PlaceRoad.cs" />
-     <Compile Include="assets\scripts\PlayerScripts\PlayerManager.cs" />
-     <None Include="assets\standard assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
-     <None Include="assets\standard assets\Skyboxes\_skybox info.txt" />
+     <Compile Include="Assets\scripts\ManagerScripts\MenuGUI.cs" />
+     <Compile Include="Assets\scripts\ManagerScripts\NetworkManager.cs" />
+     <Compile Include="Assets\scripts\ManagerScripts\SceneManager.cs" />
+     <Compile Include="Assets\scripts\ManagerScripts\SpawnManager.cs" />
+     <Compile Include="Assets\scripts\PlayerScripts\CameraController.cs" />
+     <Compile Include="Assets\scripts\PlayerScripts\CreateUnit.cs" />
+     <Compile Include="Assets\scripts\PlayerScripts\DrawGrid.cs" />
+     <Compile Include="Assets\scripts\PlayerScripts\DrawRoad.cs" />
+     <Compile Include="Assets\scripts\PlayerScripts\PlaceCastle.cs" />
+     <Compile Include="Assets\scripts\PlayerScripts\PlaceRoad.cs" />
+     <Compile Include="Assets\scripts\PlayerScripts\PlayerManager.cs" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">

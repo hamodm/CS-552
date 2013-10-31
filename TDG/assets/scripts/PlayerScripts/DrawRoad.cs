@@ -5,18 +5,12 @@ using System.Collections.Generic;
 public class DrawRoad : MonoBehaviour 
 {
     private LineRenderer line;
-    //might not keep this, trying to make sure the line won't disappear
-    private LineRenderer secondLine;
     private int counter;
     private List<Vector3> vertices;
 
 	// Use this for initialization
 	void Start () 
     {
-        line = GetComponent<LineRenderer>();
-        secondLine = GetComponent<LineRenderer>();
-        line.SetWidth(1f, 2f);
-        secondLine.SetWidth(1f, 2f);
 	}
 	
 	// Update is called once per frame
@@ -37,10 +31,11 @@ public class DrawRoad : MonoBehaviour
 
     public void SetOrigin(Vector3 origin)
     {
+        line = GetComponent<LineRenderer>();
+		line.SetWidth(1f, 1f);
         origin.y = 0.1f;
         vertices = new List<Vector3>();
         line.SetPosition(0, origin);
-        secondLine.SetPosition(0, origin);
         vertices.Add(origin);
         counter = 1;
     }
@@ -50,8 +45,6 @@ public class DrawRoad : MonoBehaviour
         destination.y = 0.1f;
         line.SetVertexCount(counter + 1);
         line.SetPosition(counter, destination);
-        secondLine.SetVertexCount(counter + 1);
-        secondLine.SetPosition(counter, destination);
         counter++;
     }
 
@@ -60,8 +53,21 @@ public class DrawRoad : MonoBehaviour
         destination.y = 0.1f;
         line.SetVertexCount(counter + 1);
         line.SetPosition(counter, destination);
-
-        secondLine.SetVertexCount(counter + 1);
-        secondLine.SetPosition(counter, destination);
     }
+	
+	public void AddRoadToPlayerManager(PlayerManager playerManager)
+	{
+		playerManager.roads.Add(vertices);
+	}
+	
+	public Vector3 LastVertex()
+	{
+		return vertices[vertices.Count - 1];
+	}
+	
+	public List<Vector3> GetVertices()
+	{
+		List<Vector3> returnList = vertices;
+		return returnList;
+	}
 }

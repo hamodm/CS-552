@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour {
     public Vector3 castlePosition;
     //holds the list of all roads, which are each a list of vertices
     public List<List<Vector3>> roads;
+	public List<GameObject> units;
 	// Use this for initialization
 	void Start () 
     {
