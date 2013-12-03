@@ -1,27 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlaceRoad : MonoBehaviour {
     public GameObject road;
     
     private GameObject newRoad;
     private bool isPlacing;
+    private bool isValid;
     private bool isInitialized;
     private Camera camera;
     private DrawRoad drawRoad;
     private float terrainWidth;
     private float terrainLength;
     private PlayerManager playerManager;
+    private TileManager tileManager;
 
 	// Use this for initialization
 	void Start () 
     {
         isPlacing = false;
         isInitialized = false;
+        isValid = false;
         camera = Camera.main;
         terrainWidth = Terrain.activeTerrain.terrainData.size.x;
         terrainLength = Terrain.activeTerrain.terrainData.size.z;
         playerManager = GetComponent<PlayerManager>();
+        tileManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<TileManager>();
 	}
 	
 	// Update is called once per frame
@@ -51,12 +56,34 @@ public class PlaceRoad : MonoBehaviour {
 		return position;
 	}
 
+    List<int> TileNumber(Vector3 position)
+    {
+        List<int> tile = new List<int>();
+
+        //get the tile size from the drawGrid script when it's added
+        int tileSize = 50;
+        //find the tile the road should be drawn to, then move it to the middle of that tile
+        int x = (int)position.x / tileSize;
+        int z = (int)position.z / tileSize;
+        tile.Add(x);
+        tile.Add(z);
+        return tile;
+    }
+
     //makes sure that a location is on the map
     bool InBounds(Vector3 position)
     {
-        if (position.x >= 0 && position.x <= terrainWidth && position.z >= 0 && position.z <= terrainLength)
+        if (position.x > 0 && position.x < terrainWidth && position.z > 0 && position.z < terrainLength)
             return true;
         return false;
+    }
+
+    bool CanBePlaced(Vector3 position)
+    {
+        //List<int> tile = TileNumber(position);
+        //if (tileManager.roads[tile[0]][tile[1]] == 0)
+        //    return true;
+         return false;
     }
 
     void Place()
@@ -68,48 +95,34 @@ public class PlaceRoad : MonoBehaviour {
             drawRoad.SetOrigin(playerManager.castlePosition);
             isInitialized = true;
         }
-        else if(isInitialized && Input.GetMouseButtonDown(0) && InBounds(mousePosition))
+        else if (isInitialized && Input.GetMouseButtonDown(0) && InBounds(GetMousePosition()))
         {
 			mousePosition = FindTile(GetMousePosition());
             drawRoad.AddVertex(mousePosition);
         }
-        else if (isInitialized && InBounds(mousePosition))
+        else if (isInitialized && InBounds(GetMousePosition()))
         {
 			mousePosition = FindTile(GetMousePosition());
             drawRoad.TemporarilyAddVertex(mousePosition);
         }
-    }
-
-    void OnGUI()
-    {
-        //can change to only show when the player clicks on their castle
-        if (!isPlacing)
-            PromptForRoadPlacement();
         else
-            PromptForRoadPlacementEnd();
+            drawRoad.ClearTempVertices();
     }
 
-    void PromptForRoadPlacement()
+
+    public void StartPlacingRoad()
     {
-        if (GUI.Button(new Rect(0, 30, 100, 20), "Place Road"))
-        {
-            if (playerManager.hasPlacedCastle)
-            {
-                isPlacing = true;
-                newRoad = Network.Instantiate(road, new Vector3(0,0,0), Quaternion.identity, 0) as GameObject;
-				newRoad.transform.parent = gameObject.transform;
-                drawRoad = newRoad.GetComponent<DrawRoad>();
-            }
-        }
+        isPlacing = true;
+        newRoad = Network.Instantiate(road, new Vector3(0, 0, 0), Quaternion.identity, 0) as GameObject;
+        newRoad.transform.parent = gameObject.transform;
+        drawRoad = newRoad.GetComponent<DrawRoad>();
     }
 
-    void PromptForRoadPlacementEnd()
+    public void CreateRoad()
     {
-        if (GUI.Button(new Rect(0, 30, 100, 20), "Stop Placing Road"))
-        {
-            isPlacing = false;
-            isInitialized = false;
-			drawRoad.AddRoadToPlayerManager(playerManager);
-        }
+        isPlacing = false;
+        isInitialized = false;
+        isValid = false;
+        drawRoad.AddRoadToPlayerManager(playerManager);
     }
 }

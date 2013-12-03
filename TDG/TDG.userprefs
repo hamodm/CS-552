@@ -1,17 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\PlayerScripts\CreateUnit.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="assets\scripts\ManagerScripts\ResourceManager.cs">
     <Files>
-      <File FileName="assets\scripts\PlayerScripts\PlaceCastle.cs" Line="69" Column="13" />
-      <File FileName="assets\scripts\ManagerScripts\NetworkManager.cs" Line="1" Column="1" />
-      <File FileName="assets\scripts\ManagerScripts\SceneManager.cs" Line="1" Column="1" />
-      <File FileName="assets\scripts\ManagerScripts\MenuGUI.cs" Line="1" Column="1" />
-      <File FileName="assets\scripts\PlayerScripts\CameraController.cs" Line="25" Column="79" />
-      <File FileName="Assets\scripts\PlayerScripts\PlaceRoad.cs" Line="80" Column="10" />
-      <File FileName="Assets\scripts\PlayerScripts\PlayerManager.cs" Line="22" Column="2" />
-      <File FileName="Assets\scripts\PlayerScripts\DrawRoad.cs" Line="13" Column="6" />
-      <File FileName="Assets\scripts\PlayerScripts\CreateUnit.cs" Line="51" Column="3" />
-      <File FileName="Assets\scripts\ManagerScripts\SpawnManager.cs" Line="30" Column="46" />
+      <File FileName="assets\scripts\ManagerScripts\ResourceManager.cs" Line="35" Column="93" />
+      <File FileName="assets\scripts\Resources\Stone.cs" Line="10" Column="51" />
+      <File FileName="assets\scripts\Resources\Food.cs" Line="5" Column="5" />
+      <File FileName="assets\scripts\ManagerScripts\SceneManager.cs" Line="24" Column="27" />
+      <File FileName="assets\scripts\InitializeManagers.cs" Line="13" Column="42" />
+      <File FileName="assets\scripts\PlayerScripts\PlaceCastle.cs" Line="52" Column="34" />
+      <File FileName="assets\scripts\UnitScripts\UnitManager.cs" Line="24" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

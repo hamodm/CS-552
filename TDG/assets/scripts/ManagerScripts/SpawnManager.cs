@@ -30,5 +30,6 @@ public class SpawnManager : MonoBehaviour {
         enabledPlayer.GetComponent<PlaceRoad>().enabled = true;
         enabledPlayer.GetComponent<PlayerManager>().enabled = true;
 		enabledPlayer.GetComponent<CreateUnit>().enabled = true;
+        enabledPlayer.GetComponent<PlaceTower>().enabled = true;
     }
 }

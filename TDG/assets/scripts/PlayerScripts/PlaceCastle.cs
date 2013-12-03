@@ -9,13 +9,15 @@ public class PlaceCastle : MonoBehaviour {
 	bool isPlacing;
 
     private PlayerManager playerManager;
-
+	private TileManager tileManager;
+    
     // Use this for initialization
     void Start()
     {
 		castleCount = 0;
 		isPlacing = false;
         playerManager = GetComponent<PlayerManager>();
+		tileManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<TileManager>();
     }
 
     // Update is called once per frame
@@ -35,12 +37,30 @@ public class PlaceCastle : MonoBehaviour {
         //get the mouse position in relation to the word instead of the screen
         return Camera.main.ScreenToWorldPoint(mousePosition);
     }
+
+    Vector3 FindTile(Vector3 position)
+    {
+        int tileSize = 50;
+        position.x = tileSize * ((int)position.x / tileSize) + tileSize / 2;
+        position.z = tileSize * ((int)position.z / tileSize) + tileSize / 2;
+        return position;
+    }
+	
+	bool TileIsAvailable(Vector3 p)
+	{
+		int x = (int)p.x /tileManager.tileSize;
+		int z = (int)p.z / tileManager.tileSize;
+		if(tileManager.resources[x, z] == 1)
+			return false;
+		else
+			return true;
+	}
 	
     void Place()
     {
 		
         //each player should only have one castle
-        if(Input.GetMouseButtonDown(0) && castleCount == 0)
+        if(Input.GetMouseButtonDown(0) && castleCount == 0 && TileIsAvailable(newCastle.transform.position))
 		{
 			castleCount++;
 			isPlacing = false;
@@ -49,15 +69,15 @@ public class PlaceCastle : MonoBehaviour {
 		}
 		else if (castleCount == 0)
         {
-			newCastle.transform.position = GetMousePosition();
+			newCastle.transform.position = FindTile(GetMousePosition());
         }
     }
 	
 	void OnGUI()
 	{	
 		//if the player hasnt placed a castle yet and isn't currently placing one, then display a button prompting them to place one
-		if(!isPlacing && castleCount == 0)
-			PromptForCastlePlacement();
+		//if(!isPlacing && castleCount == 0)
+		//	PromptForCastlePlacement();
 	}
 	
 	void PromptForCastlePlacement()
@@ -69,4 +89,11 @@ public class PlaceCastle : MonoBehaviour {
             newCastle.transform.parent = gameObject.transform;
 		}
 	}
+
+    public void StartPlacingCastle()
+    {
+        isPlacing = true;
+        newCastle = Network.Instantiate(castle, new Vector3(0, 0, 0), Quaternion.identity, 0) as GameObject;
+        newCastle.transform.parent = gameObject.transform;
+    }
 }
